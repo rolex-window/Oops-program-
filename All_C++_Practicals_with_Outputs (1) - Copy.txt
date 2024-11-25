@@ -1,0 +1,243 @@
+
+# Practical 1: Operators and Inline Functions
+Program:
+#include <iostream>
+using namespace std;
+
+inline int cube(int s) { return s * s * s; }
+
+int main() {
+    cout << "The cube of 3 is: " << cube(3) << "\n";
+    return 0;
+}
+Output:
+The cube of 3 is: 27
+
+# Practical 2: Array Handling and Sorting
+Program for Matrix Addition:
+#include <iostream>
+using namespace std;
+
+int main() {
+    int r, c, a[100][100], b[100][100], sum[100][100];
+    cout << "Enter number of rows: ";
+    cin >> r;
+    cout << "Enter number of columns: ";
+    cin >> c;
+
+    cout << "Enter elements of 1st matrix:" << endl;
+    for (int i = 0; i < r; ++i)
+        for (int j = 0; j < c; ++j)
+            cin >> a[i][j];
+
+    cout << "Enter elements of 2nd matrix:" << endl;
+    for (int i = 0; i < r; ++i)
+        for (int j = 0; j < c; ++j)
+            cin >> b[i][j];
+
+    for (int i = 0; i < r; ++i)
+        for (int j = 0; j < c; ++j)
+            sum[i][j] = a[i][j] + b[i][j];
+
+    cout << "Sum of two matrices is:" << endl;
+    for (int i = 0; i < r; ++i) {
+        for (int j = 0; j < c; ++j)
+            cout << sum[i][j] << " ";
+        cout << endl;
+    }
+    return 0;
+}
+Output:
+(Example input/output omitted for brevity)
+
+# Practical 3: Classes and Objects
+Program:
+#include <iostream>
+using namespace std;
+
+class Person {
+public:
+    string name;
+    int age;
+    void introduce() {
+        cout << "Hi, my name is " << name << " and I am " << age << " years old." << endl;
+    }
+};
+
+int main() {
+    Person person1;
+    person1.name = "Alice";
+    person1.age = 30;
+    person1.introduce();
+    return 0;
+}
+Output:
+Hi, my name is Alice and I am 30 years old.
+
+# Additional Practicals:
+(Other practicals will be listed similarly here)
+
+# Practical 4: Inheritance and Polymorphism
+Program:
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+    void show() { cout << "Base class function
+"; }
+};
+
+class Derived : public Base {
+public:
+    void show() { cout << "Derived class function
+"; }
+};
+
+int main() {
+    Base* b;
+    Derived d;
+    b = &d;
+    b->show();
+    return 0;
+}
+Output:
+Base class function
+
+# Practical 5: Operator Overloading
+Program:
+#include <iostream>
+using namespace std;
+
+class Complex {
+private:
+    int real, imag;
+
+public:
+    Complex(int r = 0, int i = 0) : real(r), imag(i) {}
+
+    Complex operator+(Complex const& obj) {
+        return Complex(real + obj.real, imag + obj.imag);
+    }
+
+    void display() { cout << real << " + i" << imag << endl; }
+};
+
+int main() {
+    Complex c1(10, 5), c2(2, 4);
+    Complex c3 = c1 + c2;
+    c3.display();
+    return 0;
+}
+Output:
+12 + i9
+
+# Practical 6: Friend Functions
+Program:
+#include <iostream>
+using namespace std;
+
+class Base {
+private:
+    int privateVar;
+
+public:
+    Base() : privateVar(42) {}
+    friend void displayPrivate(Base& b);
+};
+
+void displayPrivate(Base& b) {
+    cout << "Private variable value: " << b.privateVar << endl;
+}
+
+int main() {
+    Base obj;
+    displayPrivate(obj);
+    return 0;
+}
+Output:
+Private variable value: 42
+
+# Practical 7: File Handling and Stream Manipulation
+Program:
+#include <fstream>
+#include <iostream>
+using namespace std;
+
+int main() {
+    ofstream fout("example.txt");
+    fout << "Hello, this is a file handling example!" << endl;
+    fout.close();
+
+    ifstream fin("example.txt");
+    string line;
+    while (getline(fin, line)) {
+        cout << line << endl;
+    }
+    fin.close();
+    return 0;
+}
+Output:
+Hello, this is a file handling example!
+
+# Practical 8: Dynamic Memory Management
+Program:
+#include <iostream>
+using namespace std;
+
+int main() {
+    int* arr = new int[5];
+    cout << "Enter 5 numbers:" << endl;
+    for (int i = 0; i < 5; i++) {
+        cin >> arr[i];
+    }
+    cout << "You entered:" << endl;
+    for (int i = 0; i < 5; i++) {
+        cout << arr[i] << " ";
+    }
+    delete[] arr;
+    return 0;
+}
+Output:
+Enter 5 numbers:
+1 2 3 4 5
+You entered:
+1 2 3 4 5
+
+# Practical 9: Exception Handling
+Program:
+#include <iostream>
+using namespace std;
+
+int main() {
+    try {
+        int divisor = 0;
+        if (divisor == 0) {
+            throw "Division by zero exception";
+        }
+    } catch (const char* msg) {
+        cout << "Caught an exception: " << msg << endl;
+    }
+    return 0;
+}
+Output:
+Caught an exception: Division by zero exception
+
+# Practical 10: Templates and Generic Programming
+Program:
+#include <iostream>
+using namespace std;
+
+template <typename T>
+T add(T a, T b) {
+    return a + b;
+}
+
+int main() {
+    cout << "Sum of integers: " << add(3, 4) << endl;
+    cout << "Sum of doubles: " << add(3.5, 4.5) << endl;
+    return 0;
+}
+Output:
+Sum of integers: 7
+Sum of doubles: 8
